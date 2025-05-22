@@ -1,0 +1,67 @@
+{
+  "type": "page",
+  "body": [
+    {
+      "id": "u:65919a18d57b",
+      "type": "form",
+      "title": "",
+      "mode": "flex",
+      "labelAlign": "top",
+      "dsType": "api",
+      "feat": "Edit",
+      "body": [
+        {
+          "name": "id",
+          "label": "id",
+          "row": 0,
+          "type": "input-number",
+          "id": "u:9eb187fdc4f2",
+          "keyboard": true,
+          "showSteps": true,
+          "step": 1,
+          "visible": false
+        },
+        {
+          "name": "slnDir",
+          "label": "解决方案地址",
+          "row": 1,
+          "type": "input-text",
+          "id": "u:3285a1f5ceab"
+        }
+      ],
+      "api": {
+        "url": "/api/Configuration",
+        "method": "put",
+        "requestAdaptor": "",
+        "adaptor": "",
+        "messages": {}
+      },
+      "actions": [
+        {
+          "type": "button",
+          "label": "提交",
+          "onEvent": {
+            "click": {
+              "actions": [
+                {
+                  "actionType": "submit",
+                  "componentId": "u:65919a18d57b"
+                }
+              ]
+            }
+          },
+          "level": "primary",
+          "id": "u:1e8c3fab8177",
+          "disabledOnAction": false
+        }
+      ],
+      "resetAfterSubmit": true,
+      "initApi": "/api/Configuration"
+    }
+  ],
+  "id": "u:7fc29ea5bfab",
+  "asideResizor": false,
+  "pullRefresh": {
+    "disabled": true
+  }
+}

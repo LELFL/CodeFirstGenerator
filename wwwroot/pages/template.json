@@ -1,0 +1,784 @@
+{
+  "type": "page",
+  "body": [
+    {
+      "type": "crud2",
+      "id": "u:56425aa72b13",
+      "mode": "table2",
+      "dsType": "api",
+      "syncLocation": false,
+      "primaryField": "id",
+      "loadType": "pagination",
+      "api": {
+        "url": "/api/Template",
+        "method": "get",
+        "requestAdaptor": "",
+        "adaptor": "",
+        "messages": {}
+      },
+      "quickSaveItemApi": {
+        "url": "/api/Template/$id",
+        "method": "put",
+        "requestAdaptor": "",
+        "adaptor": "",
+        "messages": {}
+      },
+      "filter": {
+        "type": "form",
+        "title": "条件查询",
+        "mode": "inline",
+        "columnCount": 3,
+        "clearValueOnHidden": true,
+        "behavior": [],
+        "body": [],
+        "actions": [
+          {
+            "type": "reset",
+            "label": "重置",
+            "id": "u:d2eb96456986"
+          },
+          {
+            "type": "submit",
+            "label": "查询",
+            "level": "primary",
+            "id": "u:de5cd09a8c6a"
+          }
+        ],
+        "id": "u:35998d89f888",
+        "feat": "Insert",
+        "visible": false
+      },
+      "headerToolbar": [
+        {
+          "type": "flex",
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "style": {
+            "position": "static",
+            "flexWrap": "nowrap"
+          },
+          "items": [
+            {
+              "type": "container",
+              "body": [
+                {
+                  "type": "button",
+                  "label": "新增",
+                  "level": "primary",
+                  "className": "m-r-xs",
+                  "behavior": "Insert",
+                  "onEvent": {
+                    "click": {
+                      "actions": [
+                        {
+                          "actionType": "dialog",
+                          "dialog": {
+                            "type": "dialog",
+                            "body": [
+                              {
+                                "id": "u:38e0e3e1bf55",
+                                "type": "form",
+                                "title": "新增数据",
+                                "mode": "flex",
+                                "labelAlign": "top",
+                                "dsType": "api",
+                                "feat": "Insert",
+                                "body": [
+                                  {
+                                    "name": "name",
+                                    "label": "名称",
+                                    "row": 0,
+                                    "type": "input-text",
+                                    "id": "u:df9c9d94bd11",
+                                    "colSize": "1/2"
+                                  },
+                                  {
+                                    "type": "select",
+                                    "label": "类型",
+                                    "name": "templateType",
+                                    "options": [
+                                      {
+                                        "label": "Razor",
+                                        "value": 1
+                                      },
+                                      {
+                                        "label": "CSharpScript",
+                                        "value": 2
+                                      },
+                                      {
+                                        "label": "JavaScript",
+                                        "value": 3
+                                      }
+                                    ],
+                                    "id": "u:db9461858ab0",
+                                    "multiple": false,
+                                    "row": 0,
+                                    "colSize": "1/4",
+                                    "selectFirst": true
+                                  },
+                                  {
+                                    "type": "switch",
+                                    "label": "覆盖生成",
+                                    "option": "",
+                                    "name": "overwrite",
+                                    "falseValue": false,
+                                    "trueValue": true,
+                                    "row": 0,
+                                    "value": true,
+                                    "colSize": "1/4",
+                                    "id": "u:0c0478379ea2"
+                                  },
+                                  {
+                                    "name": "outputPath",
+                                    "label": "生成地址",
+                                    "row": 1,
+                                    "type": "input-text",
+                                    "id": "u:4fd1015e68d3",
+                                    "colSize": "1"
+                                  },
+                                  {
+                                    "name": "content",
+                                    "label": "内容",
+                                    "row": 2,
+                                    "type": "editor",
+                                    "language": "razor",
+                                    "id": "u:f470aa95177c"
+                                  }
+                                ],
+                                "api": {
+                                  "url": "/api/Template",
+                                  "method": "post",
+                                  "requestAdaptor": "",
+                                  "adaptor": "",
+                                  "messages": {}
+                                },
+                                "resetAfterSubmit": true,
+                                "actions": [
+                                  {
+                                    "type": "button",
+                                    "actionType": "cancel",
+                                    "label": "取消"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "actionType": "submit",
+                                    "label": "提交",
+                                    "level": "primary"
+                                  }
+                                ],
+                                "onEvent": {
+                                  "submitSucc": {
+                                    "actions": [
+                                      {
+                                        "actionType": "search",
+                                        "groupType": "component",
+                                        "componentId": "u:56425aa72b13"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            ],
+                            "title": "新增数据",
+                            "size": "md",
+                            "actions": [
+                              {
+                                "type": "button",
+                                "actionType": "cancel",
+                                "label": "取消",
+                                "id": "u:e731eb795ac3"
+                              },
+                              {
+                                "type": "button",
+                                "actionType": "submit",
+                                "label": "提交",
+                                "level": "primary",
+                                "id": "u:799de5eba98b"
+                              }
+                            ],
+                            "actionType": "dialog",
+                            "id": "u:97d6245f7c00",
+                            "showCloseButton": true,
+                            "closeOnOutside": false,
+                            "closeOnEsc": false,
+                            "showErrorMsg": true,
+                            "showLoading": true,
+                            "draggable": false
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "id": "u:b4bb97a5acad",
+                  "disabledOnAction": false
+                },
+                {
+                  "type": "button",
+                  "label": "刷新",
+                  "behavior": "custom",
+                  "className": "m-r-xs",
+                  "onEvent": {
+                    "click": {
+                      "actions": [
+                        {
+                          "componentId": "u:56425aa72b13",
+                          "ignoreError": false,
+                          "actionType": "reload"
+                        }
+                      ]
+                    }
+                  },
+                  "id": "u:8273f58a0ea3",
+                  "disabledOnAction": false
+                }
+              ],
+              "style": {
+                "position": "static",
+                "display": "flex",
+                "flex": "1 1 auto",
+                "flexGrow": 1,
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start"
+              },
+              "wrapperBody": false,
+              "isFixedHeight": false,
+              "align": "left",
+              "behavior": [
+                "Insert",
+                "BulkEdit",
+                "BulkDelete"
+              ],
+              "id": "u:28f9e2f17167"
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "behavior": [
+                "FuzzyQuery"
+              ],
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:580e9044a0a2",
+              "isFixedHeight": false
+            }
+          ],
+          "id": "u:56cfd52aea12",
+          "isFixedHeight": false,
+          "isFixedWidth": false
+        }
+      ],
+      "footerToolbar": [
+        {
+          "type": "flex",
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "style": {
+            "position": "static"
+          },
+          "items": [
+            {
+              "type": "container",
+              "align": "left",
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start"
+              },
+              "id": "u:9ea65a0628c5"
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "body": [
+                {
+                  "type": "pagination",
+                  "behavior": "Pagination",
+                  "layout": [
+                    "total",
+                    "perPage",
+                    "pager"
+                  ],
+                  "perPage": 100,
+                  "perPageAvailable": [
+                    5,
+                    10,
+                    20,
+                    50,
+                    100
+                  ],
+                  "id": "u:529841f935ec"
+                }
+              ],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:e81ec1475457"
+            }
+          ],
+          "id": "u:552ce2047b3b"
+        }
+      ],
+      "columns": [
+        {
+          "type": "tpl",
+          "title": "id",
+          "name": "id",
+          "id": "u:4554c99030da",
+          "placeholder": "-",
+          "hidden": true
+        },
+        {
+          "type": "tpl",
+          "title": "名称",
+          "name": "name",
+          "id": "u:7d27f7bb672f",
+          "placeholder": "-",
+          "searchable": true,
+          "sorter": true
+        },
+        {
+          "type": "mapping",
+          "name": "templateType",
+          "id": "u:49ef4f88584b",
+          "placeholder": "-",
+          "label": "类型",
+          "map": {
+            "1": "<span class='label label-info'>Razor</span>",
+            "2": "<span class='label label-success'>CSharpScript</span>",
+            "3": "<span class='label label-warning'>JavaScript</span>",
+            "*": "<span class='label label-info'>Razor</span>"
+          },
+          "sorter": true,
+          "filterMultiple": true,
+          "filters": [
+            {
+              "text": "Razor",
+              "value": 1
+            },
+            {
+              "text": "CSharpScript",
+              "value": 2
+            },
+            {
+              "text": "CSharpScript",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "type": "tpl",
+          "name": "overwrite",
+          "id": "u:4ca407f70e7b",
+          "title": "覆盖",
+          "placeholder": "-",
+          "quickEdit": {
+            "mode": "inline",
+            "saveImmediately": true,
+            "id": "u:bdf3fc41d9c1",
+            "icon": "",
+            "type": "switch",
+            "falseValue": false,
+            "trueValue": true,
+            "onText": "是",
+            "offText": "否"
+          },
+          "sorter": true,
+          "filterMultiple": true,
+          "filters": [
+            {
+              "text": "是",
+              "value": true
+            },
+            {
+              "text": "否",
+              "value": false
+            }
+          ]
+        },
+        {
+          "type": "tpl",
+          "name": "outputPath",
+          "id": "u:b5c5675887b9",
+          "placeholder": "-",
+          "label": "生成地址",
+          "row": 2,
+          "sorter": true,
+          "searchable": true
+        },
+        {
+          "type": "date",
+          "title": "最后修改时间",
+          "id": "u:b4e3e96a2093",
+          "name": "lastModified",
+          "placeholder": "-",
+          "sorter": true
+        },
+        {
+          "type": "operation",
+          "title": "操作",
+          "id": "u:040e501e723c",
+          "buttons": [
+            {
+              "type": "button",
+              "label": "查看",
+              "level": "link",
+              "behavior": "View",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "dialog",
+                      "dialog": {
+                        "type": "dialog",
+                        "body": [
+                          {
+                            "id": "u:997213cbc80b",
+                            "type": "form",
+                            "title": "查看数据",
+                            "mode": "flex",
+                            "labelAlign": "top",
+                            "dsType": "api",
+                            "feat": "View",
+                            "body": [
+                              {
+                                "name": "name",
+                                "label": "名称",
+                                "row": 0,
+                                "type": "input-text",
+                                "id": "u:501105317b4a"
+                              },
+                              {
+                                "name": "templateType",
+                                "label": "类型",
+                                "row": 0,
+                                "type": "select",
+                                "id": "u:2da37f2ed816",
+                                "options": [
+                                  {
+                                    "label": "Razor",
+                                    "value": 1
+                                  },
+                                  {
+                                    "label": "CSharpScript",
+                                    "value": 2
+                                  },
+                                  {
+                                    "label": "JavaScript",
+                                    "value": 3
+                                  }
+                                ],
+                                "multiple": false
+                              },
+                              {
+                                "type": "switch",
+                                "label": "覆盖",
+                                "option": "",
+                                "name": "overwrite",
+                                "falseValue": false,
+                                "trueValue": true,
+                                "row": 1,
+                                "id": "u:955b411c0b51",
+                                "onText": "是",
+                                "offText": "否"
+                              },
+                              {
+                                "name": "outputPath",
+                                "label": "生成路径",
+                                "row": 2,
+                                "type": "input-text",
+                                "id": "u:68d9fb7ba7c0"
+                              },
+                              {
+                                "name": "content",
+                                "label": "内容",
+                                "row": 3,
+                                "type": "editor",
+                                "language": "razor",
+                                "id": "u:f1b71a4157bb"
+                              },
+                              {
+                                "name": "lastModified",
+                                "label": "最后修改时间",
+                                "row": 4,
+                                "type": "input-date",
+                                "id": "u:65ab854de842"
+                              }
+                            ],
+                            "static": true,
+                            "actions": [
+                              {
+                                "type": "button",
+                                "actionType": "cancel",
+                                "label": "关闭"
+                              }
+                            ],
+                            "onEvent": {
+                              "submitSucc": {
+                                "actions": [
+                                  {
+                                    "actionType": "search",
+                                    "groupType": "component",
+                                    "componentId": "u:56425aa72b13"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "title": "查看数据",
+                        "size": "md",
+                        "actions": [
+                          {
+                            "type": "button",
+                            "actionType": "cancel",
+                            "label": "关闭",
+                            "id": "u:bf3bde5861a3"
+                          }
+                        ],
+                        "actionType": "dialog",
+                        "id": "u:e35ab5d355a4",
+                        "showCloseButton": true,
+                        "closeOnOutside": false,
+                        "closeOnEsc": false,
+                        "showErrorMsg": true,
+                        "showLoading": true,
+                        "draggable": false
+                      }
+                    }
+                  ]
+                }
+              },
+              "id": "u:0711309bf2b8",
+              "disabledOnAction": false
+            },
+            {
+              "type": "button",
+              "label": "编辑",
+              "level": "link",
+              "behavior": "Edit",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "dialog",
+                      "dialog": {
+                        "type": "dialog",
+                        "body": [
+                          {
+                            "id": "u:a56a3d32f5ad",
+                            "type": "form",
+                            "title": "编辑数据",
+                            "mode": "flex",
+                            "labelAlign": "top",
+                            "dsType": "api",
+                            "feat": "Edit",
+                            "body": [
+                              {
+                                "name": "name",
+                                "label": "名称",
+                                "row": 1,
+                                "type": "input-text",
+                                "id": "u:ef0b015589c6",
+                                "colSize": "1/2"
+                              },
+                              {
+                                "name": "templateType",
+                                "label": "类型",
+                                "row": 1,
+                                "type": "select",
+                                "id": "u:f5b5b9d810b0",
+                                "options": [
+                                  {
+                                    "label": "Razor",
+                                    "value": 1
+                                  },
+                                  {
+                                    "label": "CSharpScript",
+                                    "value": 2
+                                  },
+                                  {
+                                    "label": "JavaScript",
+                                    "value": 3
+                                  }
+                                ],
+                                "multiple": false,
+                                "colSize": "1/4"
+                              },
+                              {
+                                "type": "switch",
+                                "label": "覆盖生成",
+                                "option": "",
+                                "name": "overwrite",
+                                "falseValue": false,
+                                "trueValue": true,
+                                "row": 1,
+                                "id": "u:0c0478379ea2",
+                                "colSize": "1/4"
+                              },
+                              {
+                                "name": "outputPath",
+                                "label": "生成地址",
+                                "row": 2,
+                                "type": "input-text",
+                                "id": "u:e710225ad38f",
+                                "colSize": "1"
+                              },
+                              {
+                                "name": "content",
+                                "label": "内容",
+                                "row": 3,
+                                "type": "editor",
+                                "language": "razor",
+                                "id": "u:71e7d21e9593"
+                              }
+                            ],
+                            "api": {
+                              "url": "/api/Template/$id",
+                              "method": "put",
+                              "requestAdaptor": "",
+                              "adaptor": "",
+                              "messages": {}
+                            },
+                            "resetAfterSubmit": true,
+                            "actions": [
+                              {
+                                "type": "button",
+                                "actionType": "cancel",
+                                "label": "取消"
+                              },
+                              {
+                                "type": "button",
+                                "actionType": "submit",
+                                "label": "提交",
+                                "level": "primary"
+                              }
+                            ],
+                            "onEvent": {
+                              "submitSucc": {
+                                "actions": [
+                                  {
+                                    "actionType": "search",
+                                    "groupType": "component",
+                                    "componentId": "u:56425aa72b13"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "title": "编辑数据",
+                        "size": "md",
+                        "actions": [
+                          {
+                            "type": "button",
+                            "actionType": "cancel",
+                            "label": "取消",
+                            "id": "u:71dbbc376f2c"
+                          },
+                          {
+                            "type": "button",
+                            "actionType": "submit",
+                            "label": "提交",
+                            "level": "primary",
+                            "id": "u:dc946594c7b2"
+                          }
+                        ],
+                        "actionType": "dialog",
+                        "id": "u:e32880c45be1",
+                        "showCloseButton": true,
+                        "closeOnOutside": false,
+                        "closeOnEsc": false,
+                        "showErrorMsg": true,
+                        "showLoading": true,
+                        "draggable": false
+                      }
+                    }
+                  ]
+                }
+              },
+              "id": "u:0696732b08ba",
+              "disabledOnAction": false
+            },
+            {
+              "type": "button",
+              "label": "删除",
+              "behavior": "Delete",
+              "className": "m-r-xs text-danger",
+              "level": "link",
+              "confirmText": "确认要删除数据",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "ajax",
+                      "api": {
+                        "url": "/api/Template/$id",
+                        "method": "delete",
+                        "requestAdaptor": "",
+                        "adaptor": "",
+                        "messages": {}
+                      },
+                      "data": {
+                        "&": "$$"
+                      }
+                    },
+                    {
+                      "actionType": "search",
+                      "groupType": "component",
+                      "componentId": "u:56425aa72b13"
+                    }
+                  ]
+                }
+              },
+              "id": "u:02b80ec71469"
+            }
+          ]
+        }
+      ],
+      "editorSetting": {
+        "mock": {
+          "enable": false,
+          "maxDisplayRows": 5
+        }
+      },
+      "showHeader": true
+    }
+  ],
+  "id": "u:9084267eef79",
+  "asideResizor": false,
+  "pullRefresh": {
+    "disabled": true
+  },
+  "definitions": {}
+}

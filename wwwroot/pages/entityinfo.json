@@ -1,0 +1,1151 @@
+{
+  "type": "page",
+  "body": [
+    {
+      "type": "crud2",
+      "id": "u:9cd32e7d52a5",
+      "mode": "table2",
+      "dsType": "api",
+      "syncLocation": false,
+      "primaryField": "id",
+      "loadType": "pagination",
+      "api": {
+        "url": "/api/EntityInfo/",
+        "method": "get"
+      },
+      "quickSaveItemApi": {
+        "url": "/api/EntityInfo/$id",
+        "method": "put",
+        "requestAdaptor": "",
+        "adaptor": "",
+        "messages": {}
+      },
+      "filter": {
+        "type": "form",
+        "title": "条件查询",
+        "mode": "inline",
+        "columnCount": 3,
+        "clearValueOnHidden": true,
+        "behavior": [],
+        "body": [],
+        "actions": [
+          {
+            "type": "reset",
+            "label": "重置",
+            "id": "u:d2d48037af31"
+          },
+          {
+            "type": "submit",
+            "label": "查询",
+            "level": "primary",
+            "id": "u:693d5e00565f"
+          }
+        ],
+        "id": "u:01a6a44f28a0",
+        "feat": "Insert",
+        "visible": false
+      },
+      "headerToolbar": [
+        {
+          "type": "flex",
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "style": {
+            "position": "static"
+          },
+          "items": [
+            {
+              "type": "container",
+              "align": "left",
+              "behavior": [
+                "Insert",
+                "BulkEdit",
+                "BulkDelete"
+              ],
+              "body": [
+                {
+                  "type": "button",
+                  "label": "新增",
+                  "level": "primary",
+                  "className": "m-r-xs",
+                  "behavior": "Insert",
+                  "onEvent": {
+                    "click": {
+                      "actions": [
+                        {
+                          "actionType": "dialog",
+                          "dialog": {
+                            "type": "dialog",
+                            "body": [
+                              {
+                                "id": "u:71c1ba3434a6",
+                                "type": "form",
+                                "title": "新增数据",
+                                "mode": "flex",
+                                "labelAlign": "top",
+                                "dsType": "api",
+                                "feat": "Insert",
+                                "body": [
+                                  {
+                                    "name": "path",
+                                    "label": "文件/文件夹地址",
+                                    "row": 0,
+                                    "type": "input-text",
+                                    "id": "u:46942be5c0e3"
+                                  }
+                                ],
+                                "api": {
+                                  "url": "/api/EntityInfo/",
+                                  "method": "post",
+                                  "requestAdaptor": "",
+                                  "adaptor": "",
+                                  "messages": {}
+                                },
+                                "resetAfterSubmit": true,
+                                "actions": [
+                                  {
+                                    "type": "button",
+                                    "actionType": "cancel",
+                                    "label": "取消"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "actionType": "submit",
+                                    "label": "提交",
+                                    "level": "primary"
+                                  }
+                                ],
+                                "onEvent": {
+                                  "submitSucc": {
+                                    "actions": [
+                                      {
+                                        "actionType": "search",
+                                        "groupType": "component",
+                                        "componentId": "u:9cd32e7d52a5"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            ],
+                            "title": "新增数据",
+                            "size": "md",
+                            "actions": [
+                              {
+                                "type": "button",
+                                "actionType": "cancel",
+                                "label": "取消",
+                                "id": "u:8f6601ea91ea"
+                              },
+                              {
+                                "type": "button",
+                                "actionType": "submit",
+                                "label": "提交",
+                                "level": "primary",
+                                "id": "u:b393bf54a14d"
+                              }
+                            ],
+                            "actionType": "dialog",
+                            "id": "u:e25c80a5e898",
+                            "showCloseButton": true,
+                            "closeOnOutside": false,
+                            "closeOnEsc": false,
+                            "showErrorMsg": true,
+                            "showLoading": true,
+                            "draggable": false
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "id": "u:a7e49c49b505"
+                },
+                {
+                  "type": "button",
+                  "label": "刷新",
+                  "behavior": "custom",
+                  "className": "m-r-xs",
+                  "onEvent": {
+                    "click": {
+                      "actions": [
+                        {
+                          "componentId": "u:9cd32e7d52a5",
+                          "ignoreError": false,
+                          "actionType": "reload"
+                        }
+                      ]
+                    }
+                  },
+                  "id": "u:c72f3245688f",
+                  "disabledOnAction": false
+                },
+                {
+                  "type": "button",
+                  "label": "一键生成",
+                  "behavior": "BulkDelete",
+                  "level": "primary",
+                  "className": "m-r-xs",
+                  "disabledOn": "${selectedItems != null && selectedItems.length < 1}",
+                  "onEvent": {
+                    "click": {
+                      "actions": [
+                        {
+                          "ignoreError": false,
+                          "actionType": "dialog",
+                          "dialog": {
+                            "type": "dialog",
+                            "title": "请选择解决方案",
+                            "body": [
+                              {
+                                "id": "u:c1f1c95a2ac8",
+                                "type": "form",
+                                "title": "表单",
+                                "mode": "flex",
+                                "labelAlign": "top",
+                                "dsType": "api",
+                                "feat": "Insert",
+                                "body": [
+                                  {
+                                    "name": "solutionsId",
+                                    "label": "解决方案",
+                                    "row": 0,
+                                    "type": "select",
+                                    "id": "u:9d19caac3f67",
+                                    "multiple": false,
+                                    "source": "/api/Solutions",
+                                    "labelField": "name",
+                                    "valueField": "id"
+                                  },
+                                  {
+                                    "type": "input-text",
+                                    "label": "文本",
+                                    "name": "ids",
+                                    "row": 1,
+                                    "id": "u:b21848c06aa3",
+                                    "visible": true
+                                  }
+                                ],
+                                "api": {
+                                  "url": "/api/EntityInfo/SolutionsGenerator",
+                                  "method": "post",
+                                  "requestAdaptor": "",
+                                  "adaptor": "",
+                                  "messages": {}
+                                },
+                                "actions": [
+                                  {
+                                    "type": "button",
+                                    "label": "提交",
+                                    "onEvent": {
+                                      "click": {
+                                        "actions": [
+                                          {
+                                            "actionType": "submit",
+                                            "componentId": "u:c1f1c95a2ac8"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "level": "primary"
+                                  }
+                                ],
+                                "resetAfterSubmit": true
+                              }
+                            ],
+                            "id": "u:a7e1f6714209",
+                            "actions": [
+                              {
+                                "type": "button",
+                                "actionType": "cancel",
+                                "label": "取消",
+                                "id": "u:38a6ba00236b"
+                              },
+                              {
+                                "type": "button",
+                                "actionType": "confirm",
+                                "label": "确定",
+                                "primary": true,
+                                "id": "u:4db509ba5bfd",
+                                "disabledOnAction": false
+                              }
+                            ],
+                            "showCloseButton": true,
+                            "closeOnOutside": false,
+                            "closeOnEsc": false,
+                            "showErrorMsg": true,
+                            "showLoading": true,
+                            "draggable": false,
+                            "actionType": "dialog"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "id": "u:23d9adbeafe8",
+                  "disabledOnAction": false
+                }
+              ],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start"
+              },
+              "id": "u:f23ae030354c",
+              "isFixedHeight": false
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "behavior": [
+                "FuzzyQuery"
+              ],
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:b378adc98c2f"
+            }
+          ],
+          "id": "u:a9993c8e6a49"
+        }
+      ],
+      "footerToolbar": [
+        {
+          "type": "flex",
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "style": {
+            "position": "static"
+          },
+          "items": [
+            {
+              "type": "container",
+              "align": "left",
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start"
+              },
+              "id": "u:1aaffc811aa4"
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "body": [
+                {
+                  "type": "pagination",
+                  "behavior": "Pagination",
+                  "layout": [
+                    "total",
+                    "perPage",
+                    "pager"
+                  ],
+                  "perPage": 100,
+                  "perPageAvailable": [
+                    10,
+                    20,
+                    50,
+                    100
+                  ],
+                  "align": "right",
+                  "id": "u:3e9fff07288c"
+                }
+              ],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:cdfc11736119",
+              "isFixedHeight": false
+            }
+          ],
+          "id": "u:45b6b8aa7fd6"
+        }
+      ],
+      "columns": [
+        {
+          "type": "tpl",
+          "title": "id",
+          "name": "id",
+          "id": "u:f03109afd9cf",
+          "placeholder": "-",
+          "visible": false,
+          "tpl": "",
+          "wrapperComponent": "",
+          "inline": true
+        },
+        {
+          "type": "tpl",
+          "title": "类名",
+          "name": "className",
+          "id": "u:a8cf5803530f",
+          "placeholder": "-",
+          "tpl": "",
+          "wrapperComponent": "",
+          "width": 150,
+          "sorter": true,
+          "searchable": true
+        },
+        {
+          "type": "tpl",
+          "title": "描述",
+          "name": "description",
+          "id": "u:c53ccabee927",
+          "placeholder": "-",
+          "width": 150,
+          "sorter": true,
+          "searchable": true
+        },
+        {
+          "type": "tpl",
+          "title": "所在文件夹",
+          "name": "folder",
+          "id": "u:0745ae23f91d",
+          "placeholder": "-",
+          "quickEdit": {
+            "mode": "popOver",
+            "saveImmediately": true,
+            "id": "u:c0af0953fd02"
+          },
+          "width": 120,
+          "sorter": true,
+          "searchable": true
+        },
+        {
+          "type": "tpl",
+          "title": "引用",
+          "name": "using",
+          "id": "u:38fc65e6bf1b",
+          "placeholder": "-",
+          "sorter": true,
+          "searchable": true
+        },
+        {
+          "type": "tpl",
+          "title": "命名空间",
+          "name": "namespace",
+          "id": "u:a2f5365f06ac",
+          "placeholder": "-",
+          "sorter": true,
+          "searchable": true
+        },
+        {
+          "type": "tpl",
+          "title": "忽略属性",
+          "name": "ignoreProperties",
+          "id": "u:b4f289a8f00c",
+          "placeholder": "-",
+          "quickEdit": {
+            "mode": "popOver",
+            "saveImmediately": true,
+            "id": "u:2099cb516f06"
+          },
+          "sorter": true,
+          "searchable": true
+        },
+        {
+          "type": "tpl",
+          "title": "文件地址",
+          "name": "filePath",
+          "id": "u:b4f289a8f00c",
+          "placeholder": "-",
+          "quickEdit": {
+            "mode": "popOver",
+            "saveImmediately": true,
+            "id": "u:2099cb516f06"
+          },
+          "sorter": true,
+          "searchable": true
+        },
+        {
+          "type": "datetime",
+          "title": "更新时间",
+          "id": "u:542268fabf24",
+          "name": "lastUpdateTime",
+          "placeholder": "-",
+          "width": 135
+        },
+        {
+          "type": "operation",
+          "id": "u:ff6e506754a1",
+          "title": "操作",
+          "buttons": [
+            {
+              "type": "button",
+              "label": "查看",
+              "level": "link",
+              "behavior": "View",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "dialog",
+                      "dialog": {
+                        "type": "dialog",
+                        "body": [
+                          {
+                            "id": "u:7ba1ca4b3a3a",
+                            "type": "form",
+                            "title": "查看数据",
+                            "mode": "flex",
+                            "labelAlign": "top",
+                            "dsType": "api",
+                            "feat": "View",
+                            "body": [
+                              {
+                                "name": "className",
+                                "label": "类名",
+                                "row": 0,
+                                "type": "input-text",
+                                "id": "u:9721e1fc91fd"
+                              },
+                              {
+                                "name": "description",
+                                "label": "描述",
+                                "row": 0,
+                                "type": "input-text",
+                                "id": "u:cd435dd038b7"
+                              },
+                              {
+                                "name": "using",
+                                "label": "引用",
+                                "row": 1,
+                                "type": "input-text",
+                                "id": "u:dcc6cd3a2d9a"
+                              },
+                              {
+                                "name": "namespace",
+                                "label": "命名空间",
+                                "row": 2,
+                                "type": "input-text",
+                                "id": "u:26070d62b3fb"
+                              },
+                              {
+                                "name": "folder",
+                                "label": "所在文件夹",
+                                "row": 2,
+                                "type": "input-text",
+                                "id": "u:02e8a416b6f5"
+                              },
+                              {
+                                "name": "filePath",
+                                "label": "文件地址",
+                                "row": 3,
+                                "type": "input-text",
+                                "id": "u:3601dcb39e0e"
+                              },
+                              {
+                                "type": "input-table",
+                                "name": "attributes",
+                                "label": "特性",
+                                "columns": [
+                                  {
+                                    "label": "名称",
+                                    "name": "name",
+                                    "quickEdit": {
+                                      "type": "input-text",
+                                      "name": "name",
+                                      "id": "u:cd46276fad6f"
+                                    },
+                                    "id": "u:3395804fe63b",
+                                    "type": "text"
+                                  },
+                                  {
+                                    "label": "参数",
+                                    "name": "arguments",
+                                    "quickEdit": {
+                                      "type": "input-text",
+                                      "name": "arguments",
+                                      "id": "u:a56fb3fa2b9f"
+                                    },
+                                    "id": "u:fec3ed733e7d",
+                                    "type": "text"
+                                  }
+                                ],
+                                "addable": false,
+                                "footerAddBtn": {
+                                  "label": "新增",
+                                  "icon": "fa fa-plus"
+                                },
+                                "strictMode": true,
+                                "row": 4,
+                                "id": "u:0f3d47fab3ed",
+                                "colSize": "1",
+                                "needConfirm": false,
+                                "showFooterAddBtn": false,
+                                "showTableAddBtn": false,
+                                "columnsTogglable": false
+                              },
+                              {
+                                "type": "input-table",
+                                "name": "properties",
+                                "label": "属性",
+                                "columns": [
+                                  {
+                                    "label": "名称",
+                                    "name": "name",
+                                    "id": "u:ec827effef74",
+                                    "type": "tpl",
+                                    "placeholder": "-",
+                                    "width": 200,
+                                    "fixed": "",
+                                    "toggled": true,
+                                    "textOverflow": "ellipsis"
+                                  },
+                                  {
+                                    "label": "描述",
+                                    "name": "description",
+                                    "id": "u:ac7d68cc8273",
+                                    "type": "tpl",
+                                    "placeholder": "-",
+                                    "width": 200,
+                                    "textOverflow": "ellipsis"
+                                  },
+                                  {
+                                    "label": "类型",
+                                    "name": "type",
+                                    "id": "u:cec05cda3b63",
+                                    "type": "tpl",
+                                    "placeholder": "-",
+                                    "width": 150,
+                                    "textOverflow": "ellipsis"
+                                  },
+                                  {
+                                    "name": "isReference",
+                                    "label": "引用",
+                                    "id": "u:417c09647374",
+                                    "type": "select",
+                                    "width": 60,
+                                    "placeholder": "-",
+                                    "multiple": false,
+                                    "options": [
+                                      {
+                                        "label": "否",
+                                        "value": false
+                                      },
+                                      {
+                                        "label": "是",
+                                        "value": true
+                                      }
+                                    ],
+                                    "textOverflow": "ellipsis"
+                                  },
+                                  {
+                                    "label": "默认值",
+                                    "name": "defaultValue",
+                                    "id": "u:30aff46b092c",
+                                    "type": "tpl",
+                                    "placeholder": "-",
+                                    "textOverflow": "ellipsis",
+                                    "width": 120
+                                  },
+                                  {
+                                    "name": "required",
+                                    "label": "必填",
+                                    "id": "u:8bed802f573b",
+                                    "type": "select",
+                                    "placeholder": "-",
+                                    "multiple": false,
+                                    "options": [
+                                      {
+                                        "label": "否",
+                                        "value": false
+                                      },
+                                      {
+                                        "label": "是",
+                                        "value": true
+                                      }
+                                    ],
+                                    "width": 60,
+                                    "textOverflow": "ellipsis"
+                                  },
+                                  {
+                                    "name": "decimalDigits",
+                                    "label": "小数位数",
+                                    "id": "u:1dc7b5634e83",
+                                    "type": "input-number",
+                                    "placeholder": "-",
+                                    "keyboard": true,
+                                    "showSteps": true,
+                                    "step": 1,
+                                    "width": 60,
+                                    "textOverflow": "ellipsis"
+                                  },
+                                  {
+                                    "name": "maxLength",
+                                    "type": "input-number",
+                                    "label": "最大长度",
+                                    "id": "u:476aab688e01",
+                                    "placeholder": "-",
+                                    "keyboard": false,
+                                    "showSteps": false,
+                                    "step": 1,
+                                    "width": 60,
+                                    "textOverflow": "ellipsis"
+                                  }
+                                ],
+                                "addable": false,
+                                "footerAddBtn": {
+                                  "label": "新增",
+                                  "icon": "fa fa-plus"
+                                },
+                                "strictMode": false,
+                                "row": 5,
+                                "id": "u:46f3ce06dae4",
+                                "needConfirm": false,
+                                "colSize": "1",
+                                "columnsTogglable": false,
+                                "showFooterAddBtn": false,
+                                "showTableAddBtn": false,
+                                "size": "full"
+                              },
+                              {
+                                "type": "input-datetime",
+                                "label": "更新时间",
+                                "name": "lastUpdateTime",
+                                "row": 6,
+                                "id": "u:9de19676c40d",
+                                "placeholder": "请选择日期以及时间",
+                                "valueFormat": "X",
+                                "displayFormat": "YYYY-MM-DD HH:mm:ss",
+                                "minDate": "",
+                                "maxDate": "",
+                                "value": "",
+                                "colSize": "1",
+                                "static": true
+                              },
+                              {
+                                "name": "originalCode",
+                                "label": "代码",
+                                "row": 7,
+                                "type": "editor",
+                                "language": "c#",
+                                "id": "u:4b2d5b2a54f1"
+                              }
+                            ],
+                            "static": true,
+                            "actions": [
+                              {
+                                "type": "button",
+                                "actionType": "cancel",
+                                "label": "关闭"
+                              }
+                            ],
+                            "onEvent": {
+                              "submitSucc": {
+                                "actions": [
+                                  {
+                                    "actionType": "search",
+                                    "groupType": "component",
+                                    "componentId": "u:9cd32e7d52a5"
+                                  }
+                                ]
+                              }
+                            },
+                            "initApi": {
+                              "url": "/api/EntityInfo/$id",
+                              "method": "get"
+                            }
+                          }
+                        ],
+                        "title": "查看数据",
+                        "size": "md",
+                        "actions": [
+                          {
+                            "type": "button",
+                            "actionType": "cancel",
+                            "label": "关闭",
+                            "id": "u:c34ee5d3e65c"
+                          }
+                        ],
+                        "actionType": "dialog",
+                        "id": "u:22ab7a9f03e3",
+                        "showCloseButton": true,
+                        "closeOnOutside": false,
+                        "closeOnEsc": false,
+                        "showErrorMsg": true,
+                        "showLoading": true,
+                        "draggable": false
+                      }
+                    }
+                  ]
+                }
+              },
+              "id": "u:28f5201c94ce",
+              "disabledOnAction": false
+            },
+            {
+              "type": "button",
+              "label": "更新",
+              "behavior": "Edit",
+              "level": "link",
+              "confirmText": "确认要更新实体信息",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "ajax",
+                      "api": {
+                        "url": "/api/EntityInfo/$id",
+                        "method": "post",
+                        "requestAdaptor": "",
+                        "adaptor": "",
+                        "messages": {}
+                      },
+                      "outputVar": "responseResult",
+                      "options": {}
+                    },
+                    {
+                      "actionType": "search",
+                      "groupType": "component",
+                      "componentId": "u:9cd32e7d52a5"
+                    }
+                  ]
+                }
+              },
+              "id": "u:99bbaaac8737",
+              "disabledOnAction": false
+            },
+            {
+              "type": "button",
+              "label": "删除",
+              "behavior": "Delete",
+              "className": "m-r-xs text-danger",
+              "level": "link",
+              "confirmText": "确认要删除数据",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "ajax",
+                      "api": {
+                        "url": "/api/EntityInfo/$id",
+                        "method": "delete",
+                        "requestAdaptor": "",
+                        "adaptor": "",
+                        "messages": {}
+                      },
+                      "data": {
+                        "&": "$$"
+                      }
+                    },
+                    {
+                      "actionType": "search",
+                      "groupType": "component",
+                      "componentId": "u:9cd32e7d52a5"
+                    }
+                  ]
+                }
+              },
+              "id": "u:7b74ac888909"
+            },
+            {
+              "label": "预览",
+              "level": "link",
+              "id": "u:374854b61be5",
+              "disabledOnAction": false,
+              "onEvent": {
+                "click": {
+                  "weight": 0,
+                  "actions": [
+                    {
+                      "ignoreError": false,
+                      "actionType": "drawer",
+                      "drawer": {
+                        "type": "drawer",
+                        "title": "预览",
+                        "body": [
+                          {
+                            "id": "u:36bc25a20012",
+                            "type": "form",
+                            "title": "表单",
+                            "mode": "flex",
+                            "labelAlign": "top",
+                            "dsType": "api",
+                            "feat": "Insert",
+                            "body": [
+                              {
+                                "name": "solutionsId",
+                                "label": "解决方案",
+                                "row": 0,
+                                "type": "select",
+                                "id": "u:05bace1ebc7a",
+                                "multiple": false,
+                                "colSize": "1",
+                                "source": "/api/Solutions",
+                                "labelField": "name",
+                                "valueField": "id",
+                                "onEvent": {
+                                  "change": {
+                                    "weight": 0,
+                                    "actions": [
+                                      {
+                                        "ignoreError": false,
+                                        "outputVar": "responseResult",
+                                        "actionType": "ajax",
+                                        "options": {},
+                                        "api": {
+                                          "url": "/api/Solutions/$solutionsId/TemplateIds",
+                                          "method": "get"
+                                        }
+                                      },
+                                      {
+                                        "componentId": "u:36bc25a20012",
+                                        "ignoreError": false,
+                                        "actionType": "setValue",
+                                        "args": {
+                                          "value": {
+                                            "templateIds": "${event.data.responseResult.result}"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "ignoreError": false,
+                                        "actionType": "ajax",
+                                        "outputVar": "responseResult",
+                                        "options": {},
+                                        "api": {
+                                          "url": "/api/EntityInfo/$id/Preview?templateIds=${event.data.responseResult.result}",
+                                          "method": "post",
+                                          "requestAdaptor": "",
+                                          "adaptor": "",
+                                          "messages": {}
+                                        }
+                                      },
+                                      {
+                                        "ignoreError": false,
+                                        "actionType": "setValue",
+                                        "componentId": "u:36bc25a20012",
+                                        "args": {
+                                          "value": {
+                                            "templates": "${event.data.responseResult.items}"
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              },
+                              {
+                                "name": "templateIds",
+                                "label": "模板",
+                                "row": 1,
+                                "type": "select",
+                                "id": "u:d5450739c9da",
+                                "colSize": "1",
+                                "source": "/api/Template",
+                                "labelField": "name",
+                                "valueField": "id",
+                                "checkAll": true,
+                                "joinValues": true,
+                                "multiple": true,
+                                "defaultCheckAll": false,
+                                "checkAllLabel": "全选",
+                                "onEvent": {
+                                  "change": {
+                                    "weight": 0,
+                                    "actions": [
+                                      {
+                                        "ignoreError": false,
+                                        "actionType": "ajax",
+                                        "outputVar": "responseResult",
+                                        "options": {},
+                                        "api": {
+                                          "url": "/api/EntityInfo/$id/Preview?templateIds=$templateIds",
+                                          "method": "post",
+                                          "requestAdaptor": "",
+                                          "adaptor": "",
+                                          "messages": {}
+                                        }
+                                      },
+                                      {
+                                        "ignoreError": false,
+                                        "actionType": "setValue",
+                                        "componentId": "u:36bc25a20012",
+                                        "args": {
+                                          "value": {
+                                            "templates": "${event.data.responseResult.items}"
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                "searchable": true,
+                                "clearable": true
+                              },
+                              {
+                                "type": "table",
+                                "name": "templates",
+                                "label": "生成结果",
+                                "columns": [
+                                  {
+                                    "label": "名称",
+                                    "name": "template",
+                                    "quickEdit": {
+                                      "type": "input-text",
+                                      "name": "name"
+                                    },
+                                    "type": "text",
+                                    "id": "u:0bc631851a1b"
+                                  },
+                                  {
+                                    "label": "生成地址",
+                                    "name": "outputPath",
+                                    "quickEdit": {
+                                      "type": "input-text",
+                                      "name": "outputPath",
+                                      "mode": "popOver"
+                                    },
+                                    "type": "text",
+                                    "id": "u:3b6c36654f65",
+                                    "placeholder": "-"
+                                  },
+                                  {
+                                    "label": "代码",
+                                    "name": "code",
+                                    "quickEdit": false,
+                                    "type": "editor",
+                                    "id": "u:83189e30dbab",
+                                    "placeholder": "-",
+                                    "popOver": true,
+                                    "copyable": true,
+                                    "breakpoint": "*",
+                                    "language": "csharp"
+                                  }
+                                ],
+                                "addable": false,
+                                "footerAddBtn": {
+                                  "label": "新增",
+                                  "icon": "fa fa-plus"
+                                },
+                                "strictMode": true,
+                                "row": 2,
+                                "id": "u:8881572f3d6f",
+                                "footable": true,
+                                "perPageAvailable": [
+                                  5,
+                                  10,
+                                  20,
+                                  50,
+                                  100
+                                ],
+                                "messages": {},
+                                "source": "$templates"
+                              }
+                            ],
+                            "actions": [
+                              {
+                                "type": "button",
+                                "label": "提交",
+                                "onEvent": {
+                                  "click": {
+                                    "actions": [
+                                      {
+                                        "actionType": "submit",
+                                        "componentId": "u:36bc25a20012"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "level": "primary"
+                              }
+                            ],
+                            "resetAfterSubmit": true,
+                            "debug": true,
+                            "autoFocus": true,
+                            "api": {
+                              "url": "/api/EntityInfo/${id}/TemplateGenerator/${templateIds}",
+                              "method": "post",
+                              "requestAdaptor": "",
+                              "adaptor": "",
+                              "messages": {}
+                            }
+                          }
+                        ],
+                        "id": "u:873bf007a24f",
+                        "actions": [
+                          {
+                            "type": "button",
+                            "actionType": "cancel",
+                            "label": "取消",
+                            "id": "u:bca85b4bedef"
+                          },
+                          {
+                            "type": "button",
+                            "actionType": "confirm",
+                            "label": "确定",
+                            "primary": true,
+                            "id": "u:de651ba6a0f1",
+                            "disabledOnAction": false
+                          }
+                        ],
+                        "showCloseButton": true,
+                        "closeOnOutside": false,
+                        "closeOnEsc": false,
+                        "showErrorMsg": true,
+                        "showLoading": true,
+                        "draggable": false,
+                        "actionType": "drawer",
+                        "resizable": false,
+                        "width": "90%"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "width": 150
+        }
+      ],
+      "editorSetting": {
+        "mock": {
+          "enable": false,
+          "maxDisplayRows": 5
+        }
+      },
+      "selectable": true,
+      "multiple": true,
+      "showHeader": true
+    }
+  ],
+  "id": "u:5d20aa88bfd3",
+  "asideResizor": false,
+  "pullRefresh": {
+    "disabled": true
+  },
+  "definitions": {}
+}

@@ -1,0 +1,706 @@
+﻿@page
+@model CodeFirstGenerator.Entities.EntityInfo
+@using CodeFirstGenerator;
+@using Microsoft.AspNetCore.Html;
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@functions {
+    // 自定义 Raw 方法
+    public static IHtmlContent Raw(string value) => new HtmlString(value);
+}
+@{
+    var className = Model.ClassNameJs;
+    var description = Model.Description;
+    var properties = Model.Properties.Where(p => !p.IsReference).ToList();
+    var propCount = properties.Count;
+}
+{
+"type": "page",
+"title": "@(description)列表",
+"body": [
+{
+"id": "u:11a2b5a2cf60",
+"type": "crud2",
+"mode": "table2",
+"dsType": "api",
+"syncLocation": true,
+"primaryField": "id",
+"loadType": "pagination",
+"api": {
+"url": "/api/products/@(className)s",
+"method": "get"
+},
+"quickSaveItemApi": {
+"url": "/api/products/@(className)s",
+"method": "put",
+"requestAdaptor": "",
+"adaptor": "",
+"messages": {}
+},
+"headerToolbar": [
+{
+"type": "flex",
+"direction": "row",
+"justify": "flex-start",
+"alignItems": "stretch",
+"style": {
+"position": "static"
+},
+"items": [
+{
+"type": "container",
+"align": "left",
+"behavior": [
+"Insert",
+"BulkEdit",
+"BulkDelete"
+],
+"body": [
+{
+"type": "button",
+"label": "新增",
+"level": "primary",
+"className": "m-r-xs",
+"behavior": "Insert",
+"onEvent": {
+"click": {
+"actions": [
+{
+"actionType": "drawer",
+"drawer": {
+"type": "drawer",
+"body": [
+{
+"id": "u:0cd3e9e2a088",
+"type": "form",
+"title": "新增@(description)",
+"mode": "flex",
+"labelAlign": "top",
+"dsType": "api",
+"feat": "Insert",
+"body": [
+@{
+    int index = 0;
+}
+@foreach (var prop in properties.Where(p => p.Name != "Id"))
+{
+    index++;
+    var propType = prop.Type.ToLower();
+    var propName = prop.NameJs;
+    if (prop.IsReference)
+        continue;
+    @:{
+    switch (propType)
+    {
+        case "int":
+        case "integer":
+        case "double":
+        case "int?":
+        case "integer?":
+        case "double?":
+            {
+                @:"type": "input-number",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"name": "@(propName)"
+            }
+            break;
+        case "decimal":
+        case "decimal?":
+            {
+                @:"type": "input-number",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"step": 0.01,
+                @:"name": "@(propName)"
+            }
+            break;
+        case "datetime":
+        case "date":
+        case "datetime?":
+        case "date?":
+            {
+                @:"type": "input-date",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"format": "YYYY-MM-DD HH:mm:ss",
+                @:"name": "@(propName)"
+            }
+            break;
+        case "boolean":
+        case "boolean?":
+            {
+                @:"type": "switch",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"trueValue": true,
+                @:"falseValue": false,
+                @:"name": "@(propName)"
+            }
+            break;
+        case "long":
+        case "long?":
+            {
+                @:"type": "select",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"multiple": false,
+                @:"source": "/api/products/@(propName.Replace("Id", ""))s",
+                @:"labelField": "name",
+                @:"valueField": "id",
+                @:"name": "@(propName)"
+            }
+            break;
+        default:
+            {
+                @:"type": "input-text",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"name": "@(propName)"
+            }
+            break;
+    }
+    @(index == propCount ? "}" : @"},")
+}
+],
+                                "api": {
+                                  "url": "/api/products/@(className)s",
+                                  "method": "post",
+                                  "requestAdaptor": "",
+                                  "adaptor": "",
+                                  "messages": {}
+                                },
+                                "resetAfterSubmit": true,
+                                "actions": [
+                                  {
+                                    "type": "button",
+                                    "actionType": "cancel",
+                                    "label": "取消"
+                                  },
+                                  {
+                                    "type": "button",
+                                    "actionType": "submit",
+                                    "label": "提交",
+                                    "level": "primary"
+                                  }
+                                ],
+                                "onEvent": {
+                                  "submitSucc": {
+                                    "actions": [
+                                      {
+                                        "actionType": "search",
+                                        "groupType": "component",
+                                        "componentId": "u:11a2b5a2cf60"
+                                      },
+                                      {
+                                        "actionType": "toast",
+                                        "ignoreError": false,
+                                        "args": {
+                                          "msgType": "success",
+                                          "position": "top-right",
+                                          "closeButton": true,
+                                          "showIcon": true,
+                                          "msg": "新增成功！",
+                                          "className": "theme-toast-action-scope"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            ],
+                            "title": "新增@(description)",
+                            "actions": [
+                              {
+                                "type": "button",
+                                "actionType": "cancel",
+                                "label": "取消",
+                                "id": "u:d76c2241e497"
+                              },
+                              {
+                                "type": "button",
+                                "actionType": "submit",
+                                "label": "提交",
+                                "level": "primary",
+                                "id": "u:bf93723f5560"
+                              }
+                            ],
+                            "actionType": "drawer",
+                            "id": "u:0cf51190ed58",
+                            "showCloseButton": true,
+                            "closeOnOutside": false,
+                            "closeOnEsc": true,
+                            "showErrorMsg": true,
+                            "showLoading": true,
+                            "draggable": false,
+                            "hideActions": false,
+                            "size": "xl",
+                            "resizable": true
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "id": "u:f87be25d17de",
+                  "disabledOnAction": false
+                },
+                {
+                  "type": "button",
+                  "label": "刷新",
+                  "behavior": "custom",
+                  "className": "m-r-xs",
+                  "onEvent": {
+                    "click": {
+                      "actions": [
+                        {
+                          "componentId": "u:11a2b5a2cf60",
+                          "ignoreError": false,
+                          "actionType": "reload"
+                        }
+                      ]
+                    }
+                  },
+                  "id": "u:404ca662907e",
+                  "disabledOnAction": false
+                }
+              ],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start"
+              },
+              "id": "u:5ce801c4fab7"
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "behavior": [
+                "FuzzyQuery"
+              ],
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:de7950216627"
+            }
+          ],
+          "id": "u:31ebddc82868"
+        }
+      ],
+      "footerToolbar": [
+        {
+          "type": "flex",
+          "direction": "row",
+          "justify": "flex-start",
+          "alignItems": "stretch",
+          "style": {
+            "position": "static"
+          },
+          "items": [
+            {
+              "type": "container",
+              "align": "left",
+              "body": [],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-start"
+              },
+              "id": "u:34f16c3f406d"
+            },
+            {
+              "type": "container",
+              "align": "right",
+              "body": [
+                {
+                  "type": "pagination",
+                  "behavior": "Pagination",
+                  "layout": [
+                    "total",
+                    "perPage",
+                    "pager",
+                    "go"
+                  ],
+                  "perPage": 10,
+                  "perPageAvailable": [
+                    10,
+                    50,
+                    100
+                  ],
+                  "align": "right",
+                  "id": "u:3ec85c59c8af",
+                  "size": "",
+                  "maxButtons": 5,
+                  "mode": "normal"
+                }
+              ],
+              "wrapperBody": false,
+              "style": {
+                "flexGrow": 1,
+                "flex": "1 1 auto",
+                "position": "static",
+                "display": "flex",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexWrap": "nowrap",
+                "alignItems": "stretch",
+                "justifyContent": "flex-end"
+              },
+              "id": "u:0391e4b4e78d"
+            }
+          ],
+          "id": "u:203d7b97663e"
+        }
+      ],
+      "columns": [
+@{
+    index = 0;
+}
+@foreach (var prop in properties.Where(p => p.Name != "Id"))
+{
+    index++;
+    var propType = prop.Type.ToLower();
+    var propName = prop.NameJs;
+    if (prop.IsReference)
+        continue;
+    @:{
+    switch (propType)
+    {
+        case "int":
+        case "integer":
+        case "double":
+        case "int?":
+        case "integer?":
+        case "double?":
+            {
+                @:"type": "tpl",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"name": "@(propName)"
+            }
+            break;
+        case "decimal":
+        case "decimal?":
+            {
+                @:"type": "tpl",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"name": "@(propName)"
+            }
+            break;
+        case "datetime":
+        case "date":
+        case "datetime?":
+        case "date?":
+            {
+                @:"type": "tpl",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"format": "YYYY-MM-DD HH:mm:ss",
+                @:"name": "@(propName)"
+            }
+            break;
+        case "boolean":
+        case "boolean?":
+            {
+                @:"type": "mapping",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"map": { "true": "✔️", "false": "❌" },
+                @:"falseValue": false,
+                @:"name": "@(propName)"
+            }
+            break;
+        case "long":
+        case "long?":
+            {
+                @:"type": "tpl",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"name": "@(propName.Replace("Id", ""))Name"
+            }
+            break;
+        default:
+            {
+                @:"type": "tpl",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"name": "@(propName)"
+            }
+            break;
+    }
+    @:},
+}
+        {
+          "type": "tpl",
+          "title": "id",
+          "name": "id",
+          "id": "u:9a514044d632",
+          "placeholder": "-",
+          "visible": false
+        },
+        {
+          "type": "operation",
+          "title": "操作",
+          "buttons": [
+            {
+              "type": "button",
+              "label": "编辑",
+              "level": "link",
+              "behavior": "Edit",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "drawer",
+                      "drawer": {
+                        "type": "drawer",
+                        "body": [
+                          {
+                            "id": "u:4ad72882e970",
+                            "type": "form",
+                            "title": "编辑@(description)",
+                            "mode": "flex",
+                            "labelAlign": "top",
+                            "dsType": "api",
+                            "feat": "Edit",
+                            "body": [
+@{
+    index = 0;
+}
+@foreach (var prop in properties.Where(p => p.Name != "Id"))
+{
+    index++;
+    var propType = prop.Type.ToLower();
+    var propName = prop.NameJs;
+    if (prop.IsReference)
+        continue;
+    @:{
+    switch (propType)
+    {
+        case "int":
+        case "integer":
+        case "double":
+        case "int?":
+        case "integer?":
+        case "double?":
+            {
+                @:"type": "input-number",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"name": "@(propName)"
+            }
+            break;
+        case "decimal":
+        case "decimal?":
+            {
+                @:"type": "input-number",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"step": 0.01,
+                @:"name": "@(propName)"
+            }
+            break;
+        case "datetime":
+        case "date":
+        case "datetime?":
+        case "date?":
+            {
+                @:"type": "input-date",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"format": "YYYY-MM-DD HH:mm:ss",
+                @:"name": "@(propName)"
+            }
+            break;
+        case "boolean":
+        case "boolean?":
+            {
+                @:"type": "switch",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"trueValue": true,
+                @:"falseValue": false,
+                @:"name": "@(propName)"
+            }
+            break;
+        case "long":
+        case "long?":
+            {
+                @:"type": "select",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"multiple": false,
+                @:"source": "/api/products/@(propName.Replace("Id", ""))s",
+                @:"labelField": "name",
+                @:"valueField": "id",
+                @:"name": "@(propName)"
+            }
+            break;
+        default:
+            {
+                @:"type": "input-text",
+                @:"label": "@(prop.Description ?? propName)",
+                @:"name": "@(propName)"
+            }
+            break;
+    }
+    @(index == propCount ? "}" : @"},")
+}
+],
+                            "api": {
+                              "url": "/api/products/@(className)s/$id",
+                              "method": "put",
+                              "requestAdaptor": "",
+                              "adaptor": "",
+                              "messages": {}
+                            },
+                            "resetAfterSubmit": true,
+                            "initApi": {
+                              "url": "/api/products/@(className)s/$id",
+                              "method": "get",
+                              "requestAdaptor": "",
+                              "adaptor": "",
+                              "messages": {}
+                            },
+                            "actions": [
+                              {
+                                "type": "button",
+                                "actionType": "cancel",
+                                "label": "取消"
+                              },
+                              {
+                                "type": "button",
+                                "actionType": "submit",
+                                "label": "提交",
+                                "level": "primary"
+                              }
+                            ],
+                            "onEvent": {
+                              "submitSucc": {
+                                "actions": [
+                                  {
+                                    "actionType": "search",
+                                    "groupType": "component",
+                                    "componentId": "u:11a2b5a2cf60"
+                                  },
+                                  {
+                                    "actionType": "toast",
+                                    "ignoreError": false,
+                                    "args": {
+                                      "msgType": "success",
+                                      "position": "top-right",
+                                      "closeButton": true,
+                                      "showIcon": true,
+                                      "msg": "修改成功！",
+                                      "className": "theme-toast-action-scope"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "title": "编辑@(description)",
+                        "size": "xl",
+                        "actions": [
+                          {
+                            "type": "button",
+                            "actionType": "cancel",
+                            "label": "取消",
+                            "id": "u:aecbf13b0e23"
+                          },
+                          {
+                            "type": "button",
+                            "actionType": "submit",
+                            "label": "提交",
+                            "level": "primary",
+                            "id": "u:94dc1a11bc3a"
+                          }
+                        ],
+                        "actionType": "drawer",
+                        "id": "u:61ecc9f1d6f4",
+                        "showCloseButton": true,
+                        "closeOnOutside": false,
+                        "closeOnEsc": true,
+                        "showErrorMsg": true,
+                        "showLoading": true,
+                        "draggable": false,
+                        "resizable": true
+                      }
+                    }
+                  ]
+                }
+              },
+              "id": "u:11439b7ea8d6",
+              "disabledOnAction": false
+            },
+            {
+              "type": "button",
+              "label": "删除",
+              "behavior": "Delete",
+              "className": "m-r-xs text-danger",
+              "level": "link",
+              "confirmText": "确认要删除@(description)",
+              "onEvent": {
+                "click": {
+                  "actions": [
+                    {
+                      "actionType": "ajax",
+                      "api": {
+                        "url": "/api/products/@(className)s/$id",
+                        "method": "delete",
+                        "requestAdaptor": "",
+                        "adaptor": "",
+                        "messages": {}
+                      },
+                      "data": {
+                        "&": "$$"
+                      }
+                    },
+                    {
+                      "actionType": "search",
+                      "groupType": "component",
+                      "componentId": "u:11a2b5a2cf60"
+                    },
+                    {
+                      "actionType": "toast",
+                      "ignoreError": false,
+                      "args": {
+                        "msgType": "success",
+                        "position": "top-right",
+                        "closeButton": true,
+                        "showIcon": true,
+                        "msg": "删除成功！",
+                        "className": "theme-toast-action-scope"
+                      }
+                    }
+                  ]
+                }
+              },
+              "id": "u:b0af6db1bb22"
+            }
+          ],
+          "id": "u:25cab3502a53"
+        }
+      ],
+      "editorSetting": {
+        "mock": {
+          "enable": true,
+          "maxDisplayRows": 5
+        }
+      }
+    }
+  ],
+  "id": "u:06f8316bfa76",
+  "asideResizor": false,
+  "pullRefresh": {
+    "disabled": true
+  },
+  "definitions": {}
+}

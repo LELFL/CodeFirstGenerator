@@ -1,0 +1,21 @@
+@CodeFirstGenerator_HostAddress = http://localhost:5083
+
+GET {{CodeFirstGenerator_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+
+### 添加测试Solutions数据
+POST {{CodeFirstGenerator_HostAddress}}/Solutions
+Content-Type: application/json
+
+{
+  "name": "测试2",
+  "description": "This is a 测试2 solution",
+  "templateIds": [2]
+}
+
+### 获取所有Template
+GET {{CodeFirstGenerator_HostAddress}}/Template
+Accept: application/json
